@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing News | Últimas Tendencias y Estrategias</title>
+    <meta name="description"
+        content="Descubre las últimas tendencias, estrategias y noticias del mundo del marketing digital, SEO, redes sociales y más.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo">Marketing News</a>
+
+                <!-- Category Filters in Navbar -->
+                <div class="filters" id="filters">
+                    <button class="chip active" data-category="all">Todos</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mantente Actualizado en Marketing Digital</h1>
+                <p>Las últimas tendencias, estrategias y noticias del mundo del marketing en un solo lugar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchBar" placeholder="Buscar artículos..." autocomplete="off">
+        </div>
+    </div>
+
+    <!-- Articles Grid -->
+    <main class="container">
+        <div id="articlesContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando artículos...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Marketing News. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Artículo | Marketing News</title>
+    <meta name="description" id="pageDescription" content="Lee el artículo completo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="/" class="logo">Marketing News</a>
+                <ul class="nav-links">
+                    <li><a href="/">Inicio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="container">
+        <div id="articleContent">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Cargando artículo...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Marketing News. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get article slug from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+
+        if (!slug) {
+            window.location.href = '/';
+        }
+
+        // Fetch and display article
+        async function loadArticle() {
+            try {
+                const response = await fetch(`http://localhost:3000/api/articles/${slug}`);
+
+                if (!response.ok) {
+                    throw new Error('Article not found');
+                }
+
+                const article = await response.json();
+                displayArticle(article);
+            } catch (error) {
+                document.getElementById('articleContent').innerHTML = `
+                    <div class="empty-state">
+                        <h3>Artículo no encontrado</h3>
+                        <p>Lo sentimos, no pudimos encontrar el artículo que buscas.</p>
+                        <a href="/" class="btn mt-md">Volver al inicio</a>
+                    </div>
+                `;
+            }
+        }
+
+        function displayArticle(article) {
+            // Update page title and meta
+            document.getElementById('pageTitle').textContent = `${article.title} | Marketing News`;
+            document.getElementById('pageDescription').content = article.excerpt || article.title;
+
+            // Format date
+            const date = new Date(article.date);
+            const formattedDate = date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Display article
+            document.getElementById('articleContent').innerHTML = `
+                <article>
+                    <div class="article-header">
+                        ${article.category ? `<span class="article-category">${article.category}</span>` : ''}
+                        <h1>${article.title}</h1>
+                        <div class="article-meta">
+                            ${article.author ? `<span class="article-author">Por ${article.author}</span>` : ''}
+                            <span class="article-date">${formattedDate}</span>
+                        </div>
+                    </div>
+
+                    ${article.featured_image_url ? `
+                        <img src="${article.featured_image_url}" alt="${article.title}" class="article-featured-image" onerror="this.style.display='none'">
+                    ` : ''}
+
+                    <div class="article-body">
+                        ${article.content}
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="/" class="btn-secondary btn">← Volver a artículos</a>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Load article on page load
+        loadArticle();
+    </script>
+</body>
+
+</html>
