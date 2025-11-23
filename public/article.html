@@ -108,6 +108,22 @@
                         ${article.content}
                     </div>
 
+                    ${article.related_posts && article.related_posts.length > 0 ? `
+                        <div class="related-posts-section">
+                            <h3>Notas Recomendadas</h3>
+                            <div class="related-posts-grid">
+                                ${article.related_posts.map(post => `
+                                    <a href="${post.link}" class="related-post-card" target="_blank" rel="noopener noreferrer">
+                                        <div class="related-post-content">
+                                            <h4>${post.title}</h4>
+                                            <span class="read-more">Leer más →</span>
+                                        </div>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
                     <div style="text-align: center; margin-top: 3rem;">
                         <a href="/" class="btn-secondary btn">← Volver a artículos</a>
                     </div>

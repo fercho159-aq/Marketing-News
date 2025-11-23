@@ -732,3 +732,50 @@ a:hover {
 .mb-xl {
   margin-bottom: var(--spacing-xl);
 }
+/* Related Posts Section */
+.related-posts-section {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.related-posts-section h3 {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.related-post-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.related-post-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.related-post-content h4 {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.read-more {
+  font-size: 0.9rem;
+  color: var(--primary-light);
+  font-weight: 500;
+}
