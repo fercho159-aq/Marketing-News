@@ -4,7 +4,7 @@ let currentCategory = 'all';
 let searchQuery = '';
 
 // API base URL
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 // DOM Elements
 const articlesContainer = document.getElementById('articlesContainer');

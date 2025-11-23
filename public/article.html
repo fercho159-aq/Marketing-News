@@ -56,7 +56,7 @@
         // Fetch and display article
         async function loadArticle() {
             try {
-                const response = await fetch(`http://localhost:3000/api/articles/${slug}`);
+                const response = await fetch(`/api/articles/${slug}`);
 
                 if (!response.ok) {
                     throw new Error('Article not found');
